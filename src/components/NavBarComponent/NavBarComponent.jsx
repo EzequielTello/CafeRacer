@@ -4,23 +4,33 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidgetComponent from "../CartWidgetComponent/CartWidgetComponent";
 import "./NavBar.css";
-
+import { Link } from "react-router-dom";
+import { ProductsData } from "../../data/productsData";
 const NavBarComponent = () => {
+  // ...
+
+  const uniqueCategories = [
+    ...new Set(ProductsData.map((product) => product.category)),
+  ];
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">CafeRacerMotos</Navbar.Brand>
+        <Navbar.Brand href="/">CafeRacerMotos</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Productos</Nav.Link>
             <NavDropdown title="Categorías" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Motos</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Indumentaria
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Accesorios</NavDropdown.Item>
+              {uniqueCategories.map((category) => (
+                <NavDropdown.Item key={category}>
+                  <Link
+                    to={`/category/${category}`}
+                    className="nav-dropdown-item-link"
+                  >
+                    {category}
+                  </Link>
+                </NavDropdown.Item>
+              ))}
             </NavDropdown>
           </Nav>
           <CartWidgetComponent />
@@ -29,5 +39,4 @@ const NavBarComponent = () => {
     </Navbar>
   );
 };
-
 export default NavBarComponent;

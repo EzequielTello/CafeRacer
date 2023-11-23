@@ -1,5 +1,13 @@
-.navbar-brand,
-.nav-link,
-.nav-dropdown-item {
-  color: #e12929;
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.nav-dropdown-item-link {
+  text-decoration: none;
+  color: blue;
+}
+
+.nav-dropdown-item-link:hover {
+  color: red;
 }

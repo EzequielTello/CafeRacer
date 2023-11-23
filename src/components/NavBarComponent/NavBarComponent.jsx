@@ -16,7 +16,11 @@ const NavBarComponent = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">CafeRacerMotos</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to={"/"} style={{ textDecoration: "none", color: "red" }}>
+            CafeRacerMotos
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

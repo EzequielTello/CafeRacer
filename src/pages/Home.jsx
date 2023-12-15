@@ -1,9 +1,19 @@
 import React from "react";
-import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
-import { ProductsData } from "../data/productsData";
+import { useAllProducts } from "../hooks/useProducts";
+import { LoaderComponent, ItemListContainer } from "../components";
 
-const Home = () => {
-  return <ItemListContainer products={ProductsData} />;
+export const Home = () => {
+  const { products, loading, error } = useAllProducts();
+
+  return (
+    <div>
+      {loading ? (
+        <LoaderComponent />
+      ) : error ? (
+        <div>Hubo un error</div>
+      ) : (
+        <ItemListContainer products={products} />
+      )}
+    </div>
+  );
 };
-
-export default Home;

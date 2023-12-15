@@ -1,11 +1,17 @@
-import MainRoutes from "./routes/MainRouter";
+import { MainRouter } from "./router/MainRouter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-function App() {
+
+import { CartProvider } from "./context";
+
+const App = () => {
   return (
     <div>
-      <MainRoutes />
+      <CartProvider>
+        <MainRouter />
+      </CartProvider>
     </div>
   );
-}
+};
+
 export default App;

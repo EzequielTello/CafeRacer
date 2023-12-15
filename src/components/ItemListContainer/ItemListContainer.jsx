@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
-const ItemListContainer = ({ products }) => {
+import { Link, useParams } from "react-router-dom";
+export const ItemListContainer = ({ products }) => {
   return (
     <div
       style={{
@@ -18,7 +18,7 @@ const ItemListContainer = ({ products }) => {
             style={{ width: "18rem", margin: 20, height: "400px" }}
           >
             <Link to={`/item/${product.id}`}>
-              <Card.Img variant="top" src={product.image} />
+              <Card.Img variant="top" src={product.thumbnail} />
             </Link>
             <Card.Body>
               <Card.Title>{product.title}</Card.Title>
@@ -31,5 +31,3 @@ const ItemListContainer = ({ products }) => {
     </div>
   );
 };
-
-export default ItemListContainer;

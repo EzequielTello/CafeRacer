@@ -1,18 +1,26 @@
-import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
+import React from "react";
+import { useAllProductsByFilter } from "../hooks/useProducts";
+import { LoaderComponent, ItemListContainer } from "../components";
 import { useParams } from "react-router-dom";
-import { ProductsData } from "../data/productsData";
-import { useEffect, useState } from "react";
+
 const Category = () => {
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
   const { categoryId } = useParams();
-
-  useEffect(() => {
-    setFilteredProducts(
-      ProductsData.filter((product) => product.category === categoryId)
-    );
-  }, [categoryId]);
-  return <ItemListContainer products={filteredProducts} />;
+  const { products, loading, error } = useAllProductsByFilter(
+    "motos",
+    categoryId,
+    "category"
+  );
+  return (
+    <div>
+      {loading ? (
+        <LoaderComponent />
+      ) : error ? (
+        <div>Hubo un error</div>
+      ) : (
+        <ItemListContainer products={products} />
+      )}
+    </div>
+  );
 };
 
 export default Category;
